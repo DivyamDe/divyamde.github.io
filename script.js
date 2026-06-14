@@ -32,6 +32,33 @@ const userName = document.getElementById("user-name");
 
 const logoutBtn = document.getElementById("logout-btn");
 
+const loginBtn = document.getElementById("login-btn");
+
+loginBtn.addEventListener("click", () => {
+
+    signInWithPopup(auth, provider)
+    .then((result) => {
+
+        const user = result.user;
+
+        userInfo.style.display = "block";
+
+        userPhoto.src = user.photoURL;
+
+        userName.textContent =
+            "Welcome " + user.displayName;
+
+        loginBtn.style.display = "none";
+
+    })
+    .catch((error) => {
+
+        console.log(error);
+
+    });
+
+});
+
 onAuthStateChanged(auth, (user) => {
 
     if (user) {
@@ -43,14 +70,7 @@ onAuthStateChanged(auth, (user) => {
         userName.textContent =
             "Welcome " + user.displayName;
 
-    } else {
-
-        signInWithPopup(auth, provider)
-        .catch((error) => {
-
-            console.log(error);
-
-        });
+        loginBtn.style.display = "none";
 
     }
 
@@ -59,5 +79,9 @@ onAuthStateChanged(auth, (user) => {
 logoutBtn.addEventListener("click", () => {
 
     signOut(auth);
+
+    userInfo.style.display = "none";
+
+    loginBtn.style.display = "inline-block";
 
 });
