@@ -327,3 +327,17 @@ transition:.3s;
 transform:translateY(-3px);
 box-shadow:0 0 20px #00bfff;
 }
+#logout-btn{
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:#ff4444;
+color:white;
+cursor:pointer;
+font-weight:bold;
+margin-top:10px;
+}
+
+#logout-btn:hover{
+background:#ff2222;
+}
